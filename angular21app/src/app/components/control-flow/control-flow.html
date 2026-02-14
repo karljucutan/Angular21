@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-3">
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="offerCode"
+        title="Offer Code"
+        [(ngModel)]="isOfferCodeValid"
+      />
+      <label class="form-check-label" for="offerCode">Have offer code?</label>
+    </div>
+  </div>
+  @if (isOfferCodeValid) {
+    <div class="col-3">
+      {{ isOfferCodeValid }}
+      <input type="text" id="offerCode" class="form-control" placeholder="Enter Offer Code" />
+    </div>
+  }
+</div>
+<hr />
+<div class="row">
+  <div class="col-3">
+    @if (isSuccessDivVisible()) {
+      <div class="bg-success">Success Div</div>
+    } @else {
+      <div class="bg-danger">Error Div</div>
+    }
+  </div>
+  <div class="col-3">
+    <button type="button" class="btn btn-primary" (click)="toggleDivVisibility()">Toggle</button>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-3">
+    <input type="text" placeholder="%" [(ngModel)]="studentTotalMark" class="form-control" />
+  </div>
+  <div class="col-3">
+    @if (studentTotalMark >= 90) {
+      <strong class="text-success">Student Has A Grade</strong>
+    } @else if (studentTotalMark >= 80) {
+      <span class="text-primary">Student Has B Grade</span>
+    } @else if (studentTotalMark >= 70) {
+      <span class="text-secondary">Student Has C Grade</span>
+    } @else {
+      <span class="text-danger">Student Fails</span>
+    }
+  </div>
+</div>
+
+<hr />
+<div class="row">
+  <div class="col-3">
+    <ul>
+      @for (item of offerList; track $index) {
+        <li>{{$index}} {{item}}</li>
+      }
+    </ul>
+  </div>
+</div>
