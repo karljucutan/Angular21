@@ -4,31 +4,36 @@ import { Signal } from './components/signal/signal';
 import { Variables } from './components/variables/variables';
 import { NotFound } from './components/not-found/not-found';
 import { ControlFlow } from './components/control-flow/control-flow';
+import { DynamicCssClass } from './components/dynamic-css-class/dynamic-css-class';
 
 export const routes: Routes = [
   {
     path: '',
     redirectTo: 'databinding',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'databinding',
-    component: DataBinding
+    component: DataBinding,
   },
   {
     path: 'signal',
-    component: Signal
+    component: Signal,
   },
   {
     path: 'variables',
-    component: Variables
+    component: Variables,
   },
   {
     path: 'controlflow',
-    component: ControlFlow
+    component: ControlFlow,
+  },
+  {
+    path: 'dynamiccssclass',
+    component: DynamicCssClass,
   },
   {
     path: '**',
-    component: NotFound
-  }
+    component: NotFound,
+  },
 ];

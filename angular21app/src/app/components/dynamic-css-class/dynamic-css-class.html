@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-3">
+    <div class="p-4" [class]="myClassName">Div 1</div>
+  </div>
+  <div class="col-3">
+    <label class="form-check-label" for="divclassname">Div Class Name</label>
+    <input id="divclassname" type="text" [(ngModel)]="myClassName" />
+  </div>
+  <div class="col-3">
+    <button
+      type="button"
+      title="button"
+      class="btn"
+      [class]="isActive ? 'btn-success' : 'btn-danger'"
+      (click)="isActive = !isActive"
+    >
+      Dynamic Button Class
+    </button>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="col-3">
+    <p [class]="getProductPriceClass()">Price $ {{productPrice}}</p>
+  </div>
+</div>
