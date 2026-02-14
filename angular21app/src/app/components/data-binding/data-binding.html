@@ -1,0 +1,30 @@
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <span> {{courseName}} </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="text" [value]="courseName">
+      </td>
+      <td>
+        <p [class]="className">This is paragraph</p>
+      </td>
+      <td>
+        <input [type]="inputType">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button type="button" (click)="showWelcomeMessage()">Show Message</button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="text" [(ngModel)]="courseName">
+      </td>
+    </tr>
+  </tbody>
+</table>
