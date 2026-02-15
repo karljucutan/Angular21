@@ -1,19 +1,23 @@
 <div class="container-fluid">
-	<div class="row min-vh-100">
-		<aside class="col-12 col-md-3 col-lg-2 bg-body-tertiary border-end p-3">
-			<a class="d-flex align-items-center mb-3 text-decoration-none" routerLink="/">
-				<span class="fs-5 fw-semibold">Angular21</span>
-			</a>
-			<nav class="nav nav-pills flex-column gap-1">
-				<a class="nav-link" routerLink="/databinding" routerLinkActive="active">Data Binding</a>
-				<a class="nav-link" routerLink="/signal" routerLinkActive="active">Signal</a>
-				<a class="nav-link" routerLink="/variables" routerLinkActive="active">Variables</a>
-				<a class="nav-link" routerLink="/controlflow" routerLinkActive="active">Control Flow</a>
-        <a class="nav-link" routerLink="/dynamiccssclass" routerLinkActive="active">Dynamic Css Class</a>
+  <div class="row min-vh-100">
+    <aside class="col-12 col-md-3 col-lg-2 bg-body-tertiary border-end p-3">
+      <a class="d-flex align-items-center mb-3 text-decoration-none" routerLink="/">
+        <span class="fs-5 fw-semibold">Angular21</span>
+      </a>
+      <nav class="nav nav-pills flex-column gap-1">
+        <a class="nav-link" routerLink="/databinding" routerLinkActive="active">Data Binding</a>
+        <a class="nav-link" routerLink="/signal" routerLinkActive="active">Signal</a>
+        <a class="nav-link" routerLink="/variables" routerLinkActive="active">Variables</a>
+        <a class="nav-link" routerLink="/controlflow" routerLinkActive="active">Control Flow</a>
+        <a class="nav-link" routerLink="/dynamiccssclass" routerLinkActive="active"
+          >Dynamic Css Class</a
+        >
+        <a class="nav-link" routerLink="/user" routerLinkActive="active">Users Template-Driven Form</a>
+        <a class="nav-link" routerLink="/user-reactive" routerLinkActive="active">Users Reactive Form</a>
       </nav>
-		</aside>
-		<main class="col-12 col-md-9 col-lg-10 p-4">
-			<router-outlet></router-outlet>
-		</main>
-	</div>
+    </aside>
+    <main class="col-12 col-md-9 col-lg-10 p-4">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
 </div>

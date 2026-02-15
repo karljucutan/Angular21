@@ -1,0 +1,110 @@
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4 p-md-5">
+          <div class="d-flex align-items-center justify-content-between mb-4">
+            <div>
+              <h1 class="h4 mb-1">Create User - Template-Driven Form</h1>
+              <p class="text-body-secondary mb-0">Fill in the details below.</p>
+            </div>
+            <span class="badge text-bg-primary rounded-pill">User</span>
+          </div>
+
+          <form class="needs-validation" #formData="ngForm">
+            <div class="row g-3">
+              <div class="col-12 col-md-4">
+                <label for="userId" class="form-label">ID</label>
+                <input
+                  type="number"
+                  [(ngModel)]="userObj.id"
+                  class="form-control"
+                  id="userId"
+                  name="id"
+                  placeholder="0"
+                />
+              </div>
+
+              <div class="col-12 col-md-8">
+                <label for="name" class="form-label">Name</label>
+                <input
+                  #name="ngModel"
+                  type="text"
+                  [(ngModel)]="userObj.name"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  placeholder="Full name"
+                  autocomplete="name"
+                  required
+                  minlength="5"
+                />
+                @if (name.touched || name.dirty) {
+                  <div class="text-danger">
+                    @if (name.errors?.['required']) {
+                      <span>This is required </span>
+                    } @else if (name.errors?.['minlength']) {
+                      <span>Minimum 5 characters required</span>
+                    }
+                  </div>
+                }
+              </div>
+
+              <div class="col-12">
+                <label for="username" class="form-label">Username</label>
+                <div class="input-group">
+                  <span class="input-group-text">@</span>
+                  <input
+                    type="text"
+                    [(ngModel)]="userObj.username"
+                    class="form-control"
+                    id="username"
+                    name="username"
+                    placeholder="username"
+                    autocomplete="username"
+                  />
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  [(ngModel)]="userObj.email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="name@example.com"
+                  autocomplete="email"
+                />
+              </div>
+
+              <div class="col-12">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group">
+                  <input
+                    type="password"
+                    [(ngModel)]="userObj.password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="••••••••"
+                    autocomplete="new-password"
+                  />
+                  <span class="input-group-text">
+                    <i class="bi bi-lock"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mt-4">
+              <button type="submit" class="btn btn-primary" [disabled]="formData.invalid">Save User</button>
+              <button type="reset" class="btn btn-outline-secondary">Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
