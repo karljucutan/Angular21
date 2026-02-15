@@ -7,6 +7,7 @@ import { ControlFlow } from './components/control-flow/control-flow';
 import { DynamicCssClass } from './components/dynamic-css-class/dynamic-css-class';
 import { UserMaster } from './components/user-master/user-master';
 import { UserReactiveForm } from './components/user-reactive-form/user-reactive-form';
+import { GetApi } from './components/API/get-api/get-api';
 
 export const routes: Routes = [
   {
@@ -41,6 +42,10 @@ export const routes: Routes = [
   {
     path: 'user-reactive',
     component: UserReactiveForm,
+  },
+  {
+    path: 'api-get',
+    component: GetApi,
   },
   {
     path: '**',
