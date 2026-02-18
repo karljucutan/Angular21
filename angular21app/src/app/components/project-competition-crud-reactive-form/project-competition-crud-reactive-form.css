@@ -1,0 +1,49 @@
+/* Table Styles */
+.competition-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.competition-table thead th {
+  font-weight: 600;
+  text-align: left;
+}
+
+.competition-table th,
+.competition-table td {
+  padding: 0.75rem;
+  vertical-align: middle;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Column Width Configuration */
+.col-id {
+  width: 8%;
+}
+
+.col-title {
+  width: 12%;
+}
+
+.col-description {
+  width: 25%;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.col-start-date {
+  width: 18%;
+}
+
+.col-end-date {
+  width: 18%;
+}
+
+.col-status {
+  width: 10%;
+}
+
+.col-actions {
+  width: 9%;
+}

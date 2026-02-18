@@ -8,6 +8,7 @@ import { DynamicCssClass } from './components/dynamic-css-class/dynamic-css-clas
 import { UserMaster } from './components/user-master/user-master';
 import { UserReactiveForm } from './components/user-reactive-form/user-reactive-form';
 import { GetApi } from './components/API/get-api/get-api';
+import { ProjectCompetitionCRUDReactiveForm } from './components/project-competition-crud-reactive-form/project-competition-crud-reactive-form';
 
 export const routes: Routes = [
   {
@@ -46,6 +47,10 @@ export const routes: Routes = [
   {
     path: 'api-get',
     component: GetApi,
+  },
+  {
+    path: 'projectcompetition-crud-reactiveform',
+    component: ProjectCompetitionCRUDReactiveForm,
   },
   {
     path: '**',
