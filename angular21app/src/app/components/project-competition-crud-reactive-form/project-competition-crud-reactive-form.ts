@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ProjectCompetitionService } from '../../services/project-competition-service';
 
 export interface ProjectCompetition {
   competitionId: number;
@@ -20,6 +21,7 @@ export interface ProjectCompetition {
 })
 export class ProjectCompetitionCRUDReactiveForm {
   http = inject(HttpClient);
+  private readonly projectCompetitionService = inject(ProjectCompetitionService);
   competitionList = signal<ProjectCompetition[]>([]);
   projectForm = new FormGroup({
     competitionId: new FormControl(0),
@@ -34,13 +36,19 @@ export class ProjectCompetitionCRUDReactiveForm {
     this.getAllCompetitions();
   }
 
+  // Service injection example
   getAllCompetitions() {
-    this.http
-      .get('https://api.freeprojectapi.com/api/ProjectCompetition/GetAllCompetition')
-      .subscribe((response) => {
-        this.competitionList.set(response as ProjectCompetition[]);
-      });
+    this.projectCompetitionService.getAllCompetitions().subscribe((response) => {
+      this.competitionList.set(response);
+    });
   }
+  //   getAllCompetitions() {
+  //   this.http
+  //     .get('https://api.freeprojectapi.com/api/ProjectCompetition/GetAllCompetition')
+  //     .subscribe((response) => {
+  //       this.competitionList.set(response as ProjectCompetition[]);
+  //     });
+  // }
 
   saveCompetition() {
     const formValue = this.projectForm.value;
