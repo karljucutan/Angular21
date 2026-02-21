@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-4">
+    <label for="emailInput" class="form-label">Email</label>
+    <input id="emailInput" type="email" class="form-control" [formField]="loginForm.email" />
+    @if (loginForm.email().touched() && loginForm.email().invalid()) {
+      <div class="text-danger mt-1" role="alert">
+        @for (error of loginForm.email().errors(); track error) {
+          <div>{{ error.message }}</div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="col-4">
+    <label for="passwordInput" class="form-label">Password</label>
+    <input id="passwordInput" type="password" class="form-control" [formField]="loginForm.password" />
+    @if (loginForm.password().touched() && loginForm.password().invalid()) {
+      <div class="text-danger mt-1" role="alert">
+        @for (error of loginForm.password().errors(); track error) {
+          <div>{{ error.message }}</div>
+        }
+      </div>
+    }
+  </div>
+</div>
+
+<div class="mt-2">
+  Model value: {{ loginModel() | json }}
+</div>
+
+<div class="row">
+  <div class="col-4">
+    {{ loginForm().value() | json}}
+  </div>
+</div>
