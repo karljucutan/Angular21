@@ -11,6 +11,7 @@ import { GetApi } from './components/API/get-api/get-api';
 import { ProjectCompetitionCRUDReactiveForm } from './components/project-competition-crud-reactive-form/project-competition-crud-reactive-form';
 import { SignalFormEx } from './components/signal-form-ex/signal-form-ex';
 import { LifeCycleEx } from './components/life-cycle-ex/life-cycle-ex';
+import { PipesEx } from './components/pipes-ex/pipes-ex';
 
 export const routes: Routes = [
   {
@@ -61,6 +62,10 @@ export const routes: Routes = [
   {
     path: 'life-cycle-ex',
     component: LifeCycleEx,
+  },
+  {
+    path: 'pipes-ex',
+    component: PipesEx,
   },
   {
     path: '**',

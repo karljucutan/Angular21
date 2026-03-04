@@ -1,0 +1,89 @@
+<section class="card">
+	<div class="card-body">
+		<h2 class="h4 mb-3">Common Angular Pipe Examples</h2>
+
+		<div class="table-responsive">
+			<table class="table table-striped align-middle mb-0">
+				<thead>
+					<tr>
+						<th scope="col">Pipe</th>
+						<th scope="col">Example</th>
+						<th scope="col">Output</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>uppercase</code></td>
+						<td><code>{{ '{{ sampleText }} | uppercase' }}</code></td>
+						<td>{{ sampleText | uppercase }}</td>
+					</tr>
+					<tr>
+						<td><code>lowercase</code></td>
+						<td><code>{{ '{{ sampleText }} | lowercase' }}</code></td>
+						<td>{{ sampleText | lowercase }}</td>
+					</tr>
+					<tr>
+						<td><code>titlecase</code></td>
+						<td><code>{{ '{{ sampleText }} | titlecase' }}</code></td>
+						<td>{{ sampleText | titlecase }}</td>
+					</tr>
+					<tr>
+						<td><code>date</code></td>
+						<td><code>{{ '{{ releaseDate }} | date: "medium"' }}</code></td>
+						<td>{{ releaseDate | date: 'medium' }}</td>
+					</tr>
+					<tr>
+						<td><code>date</code></td>
+						<td><code>{{ '{{ releaseDate }} | date: "shortDate"' }}</code></td>
+						<td>{{ releaseDate | date: 'shortDate' }}</td>
+					</tr>
+					<tr>
+						<td><code>date</code></td>
+						<td><code>{{ '{{ releaseDate }} | date: "fullDate"' }}</code></td>
+						<td>{{ releaseDate | date: 'fullDate' }}</td>
+					</tr>
+					<tr>
+						<td><code>date</code></td>
+						<td><code>{{ '{{ releaseDate }} | date: "shortTime"' }}</code></td>
+						<td>{{ releaseDate | date: 'shortTime' }}</td>
+					</tr>
+					<tr>
+						<td><code>date</code></td>
+						<td><code>{{ '{{ releaseDate }} | date: "EEEE, MMMM d, y h:mm a"' }}</code></td>
+						<td>{{ releaseDate | date: 'EEEE, MMMM d, y h:mm a' }}</td>
+					</tr>
+					<tr>
+						<td><code>date</code></td>
+						<td><code>{{ '{{ releaseDate }} | date: "medium": "+0800"' }}</code></td>
+						<td>{{ releaseDate | date: 'medium': '+0800' }}</td>
+					</tr>
+					<tr>
+						<td><code>json</code></td>
+						<td><code>{{ '{{ profile }} | json' }}</code></td>
+						<td><pre class="json-block mb-0">{{ profile | json }}</pre></td>
+					</tr>
+					<tr>
+						<td><code>slice</code></td>
+						<td><code>{{ '{{ tags }} | slice:0:3' }}</code></td>
+						<td>{{ tags | slice: 0 : 3 }}</td>
+					</tr>
+					<tr>
+						<td><code>number</code></td>
+						<td><code>{{ '{{ score }} | number: "1.2-2"' }}</code></td>
+						<td>{{ score | number: '1.2-2' }}</td>
+					</tr>
+					<tr>
+						<td><code>percent</code></td>
+						<td><code>{{ '{{ conversionRate }} | percent: "1.1-2"' }}</code></td>
+						<td>{{ conversionRate | percent: '1.1-2' }}</td>
+					</tr>
+					<tr>
+						<td><code>currency</code></td>
+						<td><code>{{ '{{ amount }} | currency: "USD"' }}</code></td>
+						<td>{{ amount | currency: 'USD' }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
