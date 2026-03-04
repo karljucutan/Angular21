@@ -10,6 +10,7 @@ import { UserReactiveForm } from './components/user-reactive-form/user-reactive-
 import { GetApi } from './components/API/get-api/get-api';
 import { ProjectCompetitionCRUDReactiveForm } from './components/project-competition-crud-reactive-form/project-competition-crud-reactive-form';
 import { SignalFormEx } from './components/signal-form-ex/signal-form-ex';
+import { LifeCycleEx } from './components/life-cycle-ex/life-cycle-ex';
 
 export const routes: Routes = [
   {
@@ -56,6 +57,10 @@ export const routes: Routes = [
   {
     path: 'signal-form-ex',
     component: SignalFormEx,
+  },
+  {
+    path: 'life-cycle-ex',
+    component: LifeCycleEx,
   },
   {
     path: '**',
