@@ -12,6 +12,7 @@ import { ProjectCompetitionCRUDReactiveForm } from './components/project-competi
 import { SignalFormEx } from './components/signal-form-ex/signal-form-ex';
 import { LifeCycleEx } from './components/life-cycle-ex/life-cycle-ex';
 import { PipesEx } from './components/pipes-ex/pipes-ex';
+import { ProjectCompetitionCRUDReactiveFormSignal } from './components/project-competition-crud-reactive-form-signal/project-competition-crud-reactive-form-signal';
 
 export const routes: Routes = [
   {
@@ -54,6 +55,10 @@ export const routes: Routes = [
   {
     path: 'projectcompetition-crud-reactiveform',
     component: ProjectCompetitionCRUDReactiveForm,
+  },
+  {
+    path: 'projectcompetition-crud-reactiveform-signal',
+    component: ProjectCompetitionCRUDReactiveFormSignal,
   },
   {
     path: 'signal-form-ex',

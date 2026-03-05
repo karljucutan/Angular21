@@ -1,0 +1,162 @@
+<!-- Main Container -->
+<div class="container mt-5">
+  <!-- Header -->
+  <h1 class="mb-4">Project Competition CRUD</h1>
+
+  <!-- Row Container -->
+  <div class="row">
+    <!-- Left Column: Data Table (col-7) -->
+    <div class="col-7">
+      <div class="card">
+        <!-- Card Header with Warning Background -->
+        <div class="card-header bg-warning">
+          <h5 class="mb-0">Competition List</h5>
+        </div>
+
+        <!-- Card Body: Table -->
+        <div class="card-body p-0">
+          <table class="table table-hover table-striped mb-0 table-sm competition-table">
+            <thead class="table-light">
+              <tr>
+                <th class="col-id">ID</th>
+                <th class="col-title">Title</th>
+                <th class="col-description">Description</th>
+                <th class="col-start-date">Start Date</th>
+                <th class="col-end-date">End Date</th>
+                <th class="col-status">Status</th>
+                <th class="col-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of competitionList(); track $index) {
+                <tr>
+                  <td class="col-id">{{ $index }}</td>
+                  <td class="col-title">{{ item.title }}</td>
+                  <td class="col-description">{{ item.description }}</td>
+                  <td class="col-start-date">{{ item.startDate | date: 'short' }}</td>
+                  <td class="col-end-date">{{ item.endDate | date: 'short' }}</td>
+                  <td class="col-status"><span class="badge bg-success">Active</span></td>
+                  <td class="col-actions">
+                    <button type="button" class="btn btn-sm btn-primary" (click)="onEdit(item)">Edit</button>
+                    <button type="button" class="btn btn-sm btn-danger" (click)="deleteCompetition(item.competitionId)">Delete</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Form (col-5) -->
+    <div class="col-5">
+      <div class="card">
+        <!-- Card Header with Warning Background -->
+        <div class="card-header bg-warning">
+          <h5 class="mb-0">Add / Edit Competition</h5>
+        </div>
+
+        <!-- Card Body: Form -->
+        <div class="card-body">
+          <form [formGroup]="projectForm">
+            <!-- Competition ID (Hidden or Read-only) -->
+            <div class="mb-3">
+              <label for="competitionId" class="form-label">Competition ID</label>
+              <input
+                type="number"
+                class="form-control"
+                id="competitionId"
+                placeholder="Auto-generated"
+                readonly
+              />
+            </div>
+
+            <!-- Title Field -->
+            <div class="mb-3">
+              <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                [formControl]="projectForm.controls.title"
+                placeholder="Enter competition title"
+                required
+              />
+            </div>
+
+            <!-- Description Field -->
+            <div class="mb-3">
+              <label for="description" class="form-label"
+                >Description <span class="text-danger">*</span></label
+              >
+              <textarea
+                class="form-control"
+                id="description"
+                [formControl]="projectForm.controls.description"
+                rows="3"
+                placeholder="Enter competition description"
+                required
+              ></textarea>
+            </div>
+
+            <!-- Start Date Field -->
+            <div class="mb-3">
+              <label for="startDate" class="form-label"
+                >Start Date <span class="text-danger">*</span></label
+              >
+              <input
+                type="datetime-local"
+                class="form-control"
+                [formControl]="projectForm.controls.startDate"
+                id="startDate"
+                required
+              />
+            </div>
+
+            <!-- End Date Field -->
+            <div class="mb-3">
+              <label for="endDate" class="form-label"
+                >End Date <span class="text-danger">*</span></label
+              >
+              <input
+                type="datetime-local"
+                class="form-control"
+                [formControl]="projectForm.controls.endDate"
+                id="endDate"
+                required
+              />
+            </div>
+
+            <!-- Status Field -->
+            <div class="mb-3">
+              <label for="status" class="form-label"
+                >Status <span class="text-danger">*</span></label
+              >
+              <select
+                [formControl]="projectForm.controls.status"
+                class="form-control"
+                id="status"
+                required
+              >
+                <option value="">-- Select Status --</option>
+                <option value="Active">Active</option>
+                <option value="Pending">Pending</option>
+                <option value="Closed">Closed</option>
+              </select>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-grid gap-2">
+              <button type="submit" (click)="saveCompetition()" class="btn btn-success btn-lg">
+                <i class="bi bi-check-circle"></i> Save Competition
+              </button>
+              <button type="reset" class="btn btn-secondary btn-lg">
+                <i class="bi bi-arrow-counterclockwise"></i> Reset
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
