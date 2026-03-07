@@ -13,6 +13,8 @@ import { SignalFormEx } from './components/signal-form-ex/signal-form-ex';
 import { LifeCycleEx } from './components/life-cycle-ex/life-cycle-ex';
 import { PipesEx } from './components/pipes-ex/pipes-ex';
 import { ProjectCompetitionCRUDReactiveFormSignal } from './components/project-competition-crud-reactive-form-signal/project-competition-crud-reactive-form-signal';
+import { Login } from './components/login/login';
+import { Layout } from './components/layout/layout';
 
 export const routes: Routes = [
   {
@@ -21,56 +23,66 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'databinding',
-    component: DataBinding,
+    path: 'login',
+    component: Login,
   },
   {
-    path: 'signal',
-    component: Signal,
-  },
-  {
-    path: 'variables',
-    component: Variables,
-  },
-  {
-    path: 'controlflow',
-    component: ControlFlow,
-  },
-  {
-    path: 'dynamiccssclass',
-    component: DynamicCssClass,
-  },
-  {
-    path: 'user',
-    component: UserMaster,
-  },
-  {
-    path: 'user-reactive',
-    component: UserReactiveForm,
-  },
-  {
-    path: 'api-get',
-    component: GetApi,
-  },
-  {
-    path: 'projectcompetition-crud-reactiveform',
-    component: ProjectCompetitionCRUDReactiveForm,
-  },
-  {
-    path: 'projectcompetition-crud-reactiveform-signal',
-    component: ProjectCompetitionCRUDReactiveFormSignal,
-  },
-  {
-    path: 'signal-form-ex',
-    component: SignalFormEx,
-  },
-  {
-    path: 'life-cycle-ex',
-    component: LifeCycleEx,
-  },
-  {
-    path: 'pipes-ex',
-    component: PipesEx,
+    path: '',
+    component: Layout,
+    children: [
+      {
+        path: 'databinding',
+        component: DataBinding,
+      },
+      {
+        path: 'signal',
+        component: Signal,
+      },
+      {
+        path: 'variables',
+        component: Variables,
+      },
+      {
+        path: 'controlflow',
+        component: ControlFlow,
+      },
+      {
+        path: 'dynamiccssclass',
+        component: DynamicCssClass,
+      },
+      {
+        path: 'user',
+        component: UserMaster,
+      },
+      {
+        path: 'user-reactive',
+        component: UserReactiveForm,
+      },
+      {
+        path: 'api-get',
+        component: GetApi,
+      },
+      {
+        path: 'projectcompetition-crud-reactiveform',
+        component: ProjectCompetitionCRUDReactiveForm,
+      },
+      {
+        path: 'projectcompetition-crud-reactiveform-signal',
+        component: ProjectCompetitionCRUDReactiveFormSignal,
+      },
+      {
+        path: 'signal-form-ex',
+        component: SignalFormEx,
+      },
+      {
+        path: 'life-cycle-ex',
+        component: LifeCycleEx,
+      },
+      {
+        path: 'pipes-ex',
+        component: PipesEx,
+      },
+    ],
   },
   {
     path: '**',

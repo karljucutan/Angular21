@@ -1,0 +1,100 @@
+<main class="login-shell d-flex align-items-center justify-content-center py-5">
+	<div class="login-bg-shape login-bg-shape-top" aria-hidden="true"></div>
+	<div class="login-bg-shape login-bg-shape-bottom" aria-hidden="true"></div>
+
+	<section class="container position-relative">
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-11 col-md-9 col-lg-8 col-xl-6">
+				<article class="card login-card border-0 shadow-lg rounded-4 overflow-hidden">
+					<div class="card-body p-4 p-md-5">
+						<div class="mb-4 text-center">
+							<span class="badge text-bg-primary rounded-pill px-3 py-2 mb-3">Enterprise Portal</span>
+							<h1 class="h3 mb-2 fw-semibold">Welcome back</h1>
+							<p class="text-body-secondary mb-0">Sign in to continue to your workspace.</p>
+						</div>
+
+						<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+							<div class="form-floating mb-3">
+								<input
+									id="email"
+									type="email"
+									class="form-control"
+									[class.is-invalid]="isEmailInvalid()"
+									formControlName="email"
+									placeholder="name@company.com"
+									autocomplete="email"
+									aria-describedby="emailHelp emailError"
+								/>
+								<label for="email">Work email</label>
+							</div>
+
+							@if (isEmailInvalid()) {
+								<div id="emailError" class="invalid-feedback d-block mb-3" aria-live="polite">
+									@if (loginForm.controls.email.errors?.['required']) {
+										<span>Email is required.</span>
+									}
+									@if (loginForm.controls.email.errors?.['email']) {
+										<span>Enter a valid email address.</span>
+									}
+								</div>
+							}
+
+							<div class="mb-2">
+								<div class="input-group">
+									<div class="form-floating">
+										<input
+											id="password"
+											[type]="showPassword() ? 'text' : 'password'"
+											class="form-control"
+											[class.is-invalid]="isPasswordInvalid()"
+											formControlName="password"
+											placeholder="Password"
+											autocomplete="current-password"
+											aria-describedby="passwordError"
+										/>
+										<label for="password">Password</label>
+									</div>
+									<button
+										type="button"
+										class="btn btn-outline-secondary"
+										(click)="togglePasswordVisibility()"
+										[attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+									>
+										{{ showPassword() ? 'Hide' : 'Show' }}
+									</button>
+								</div>
+							</div>
+
+							@if (isPasswordInvalid()) {
+								<div id="passwordError" class="invalid-feedback d-block mb-3" aria-live="polite">
+									@if (loginForm.controls.password.errors?.['required']) {
+										<span>Password is required.</span>
+									}
+									@if (loginForm.controls.password.errors?.['minlength']) {
+										<span>Password must be at least 8 characters.</span>
+									}
+								</div>
+							}
+
+							<div class="d-flex justify-content-between align-items-center mb-4 gap-3 flex-wrap">
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" id="rememberMe" formControlName="rememberMe" />
+									<label class="form-check-label" for="rememberMe">Remember me</label>
+								</div>
+								<a class="link-primary text-decoration-none fw-medium" href="javascript:void(0)">Forgot password?</a>
+							</div>
+
+							<button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">Sign in</button>
+						</form>
+
+						@if (submitted()) {
+							<div class="alert alert-success mt-4 mb-0" role="status" aria-live="polite">
+								Login form submitted successfully.
+							</div>
+						}
+					</div>
+				</article>
+			</div>
+		</div>
+	</section>
+</main>
