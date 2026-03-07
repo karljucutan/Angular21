@@ -22,15 +22,15 @@ export class Login {
   readonly showPassword = signal(false);
   readonly submitted = signal(false);
 
-  readonly isEmailInvalid = computed(() => {
+  isEmailInvalid(): boolean {
     const control = this.loginForm.controls.email;
     return control.invalid && (control.touched || control.dirty);
-  });
+  }
 
-  readonly isPasswordInvalid = computed(() => {
+  isPasswordInvalid(): boolean {
     const control = this.loginForm.controls.password;
     return control.invalid && (control.touched || control.dirty);
-  });
+  }
 
   togglePasswordVisibility(): void {
     this.showPassword.update(value => !value);
