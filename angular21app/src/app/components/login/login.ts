@@ -1,6 +1,29 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs';
+
+// Creds
+// {
+//   "userId": 0,
+//   "emailId": "kaiangular21@test.com",
+//   "fullName": "kaiangular21",
+//   "password": "kaiangular21"
+// }
+
+interface LoginRequest {
+  emailId: string;
+  password: string;
+}
+
+interface LoginApiResponse {
+  result?: boolean;
+  isSuccess?: boolean;
+  message?: string;
+  data?: unknown;
+  token?: string;
+}
 
 @Component({
   selector: 'app-login',
@@ -10,8 +33,11 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Login {
+  private readonly loginApiUrl = 'https://api.freeprojectapi.com/api/UserApp/login';
+
   private readonly formBuilder = inject(NonNullableFormBuilder);
   private readonly router = inject(Router);
+  private readonly http = inject(HttpClient);
 
   readonly loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -21,6 +47,8 @@ export class Login {
 
   readonly showPassword = signal(false);
   readonly submitted = signal(false);
+  readonly isLoading = signal(false);
+  readonly errorMessage = signal('');
 
   isEmailInvalid(): boolean {
     const control = this.loginForm.controls.email;
@@ -33,18 +61,45 @@ export class Login {
   }
 
   togglePasswordVisibility(): void {
-    this.showPassword.update(value => !value);
+    this.showPassword.update((value) => !value);
   }
 
   onSubmit(): void {
     this.submitted.set(false);
+    this.errorMessage.set('');
     this.loginForm.markAllAsTouched();
 
     if (this.loginForm.invalid) {
       return;
     }
 
-    this.submitted.set(true);
-    this.router.navigate(['/']);
+    this.isLoading.set(true);
+
+    const payload: LoginRequest = {
+      emailId: this.loginForm.controls.email.value,
+      password: this.loginForm.controls.password.value,
+    };
+
+    this.http
+      .post<LoginApiResponse>(this.loginApiUrl, payload)
+      .pipe(finalize(() => this.isLoading.set(false)))
+      .subscribe({
+        next: response => {
+          const loginSuccess =
+            response.result === true ||
+            response.data != null;
+
+          if (!loginSuccess) {
+            this.errorMessage.set(response.message ?? 'Login failed. Please verify your credentials.');
+            return;
+          }
+
+          this.submitted.set(true);
+          this.router.navigateByUrl('/');
+        },
+        error: () => {
+          this.errorMessage.set('Unable to login right now. Please try again.');
+        },
+      });
   }
 }

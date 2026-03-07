@@ -23,7 +23,7 @@
 									formControlName="email"
 									placeholder="name@company.com"
 									autocomplete="email"
-									aria-describedby="emailHelp emailError"
+									aria-describedby="emailError"
 								/>
 								<label for="email">Work email</label>
 							</div>
@@ -84,8 +84,16 @@
 								<a class="link-primary text-decoration-none fw-medium" href="javascript:void(0)">Forgot password?</a>
 							</div>
 
-							<button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">Sign in</button>
+							<button type="submit" class="btn btn-primary w-100 py-2 fw-semibold" [disabled]="isLoading()">
+								{{ isLoading() ? 'Signing in...' : 'Sign in' }}
+							</button>
 						</form>
+
+						@if (errorMessage()) {
+							<div class="alert alert-danger mt-4 mb-0" role="alert" aria-live="polite">
+								{{ errorMessage() }}
+							</div>
+						}
 
 						@if (submitted()) {
 							<div class="alert alert-success mt-4 mb-0" role="status" aria-live="polite">
