@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
+import { AuthService, AuthUser } from '../../services/auth-service';
 
 // Creds
 // {
@@ -21,7 +22,7 @@ interface LoginApiResponse {
   result?: boolean;
   isSuccess?: boolean;
   message?: string;
-  data?: unknown;
+  data?: any;
   token?: string;
 }
 
@@ -38,6 +39,7 @@ export class Login {
   private readonly formBuilder = inject(NonNullableFormBuilder);
   private readonly router = inject(Router);
   private readonly http = inject(HttpClient);
+  private readonly authService = inject(AuthService);
 
   readonly loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -85,14 +87,21 @@ export class Login {
       .pipe(finalize(() => this.isLoading.set(false)))
       .subscribe({
         next: response => {
-          const loginSuccess =
-            response.result === true ||
-            response.data != null;
+          const loginSuccess = response.result === true || response.data != null;
 
           if (!loginSuccess) {
             this.errorMessage.set(response.message ?? 'Login failed. Please verify your credentials.');
             return;
           }
+
+          const userData = response.data as Partial<AuthUser> | undefined;
+          const sessionUser: AuthUser = {
+            userId: userData?.userId ?? 0,
+            emailId: userData?.emailId ?? this.loginForm.controls.email.value,
+            fullName: userData?.fullName ?? this.loginForm.controls.email.value,
+          };
+
+          this.authService.setSession(sessionUser, response.data?.token ?? null);
 
           this.submitted.set(true);
           this.router.navigateByUrl('/');

@@ -1,20 +1,5 @@
 import { Routes } from '@angular/router';
-import { DataBinding } from './components/data-binding/data-binding';
-import { Signal } from './components/signal/signal';
-import { Variables } from './components/variables/variables';
-import { NotFound } from './components/not-found/not-found';
-import { ControlFlow } from './components/control-flow/control-flow';
-import { DynamicCssClass } from './components/dynamic-css-class/dynamic-css-class';
-import { UserMaster } from './components/user-master/user-master';
-import { UserReactiveForm } from './components/user-reactive-form/user-reactive-form';
-import { GetApi } from './components/API/get-api/get-api';
-import { ProjectCompetitionCRUDReactiveForm } from './components/project-competition-crud-reactive-form/project-competition-crud-reactive-form';
-import { SignalFormEx } from './components/signal-form-ex/signal-form-ex';
-import { LifeCycleEx } from './components/life-cycle-ex/life-cycle-ex';
-import { PipesEx } from './components/pipes-ex/pipes-ex';
-import { ProjectCompetitionCRUDReactiveFormSignal } from './components/project-competition-crud-reactive-form-signal/project-competition-crud-reactive-form-signal';
-import { Login } from './components/login/login';
-import { Layout } from './components/layout/layout';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
   {
@@ -24,68 +9,78 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    component: Login,
+    loadComponent: () => import('./components/login/login').then(component => component.Login),
   },
   {
     path: '',
-    component: Layout,
+    loadComponent: () => import('./components/layout/layout').then(component => component.Layout),
+    canActivate: [authGuard],
+    canActivateChild: [authGuard],
     children: [
       {
         path: 'databinding',
-        component: DataBinding,
+        loadComponent: () => import('./components/data-binding/data-binding').then(component => component.DataBinding),
       },
       {
         path: 'signal',
-        component: Signal,
+        loadComponent: () => import('./components/signal/signal').then(component => component.Signal),
       },
       {
         path: 'variables',
-        component: Variables,
+        loadComponent: () => import('./components/variables/variables').then(component => component.Variables),
       },
       {
         path: 'controlflow',
-        component: ControlFlow,
+        loadComponent: () => import('./components/control-flow/control-flow').then(component => component.ControlFlow),
       },
       {
         path: 'dynamiccssclass',
-        component: DynamicCssClass,
+        loadComponent: () =>
+          import('./components/dynamic-css-class/dynamic-css-class').then(component => component.DynamicCssClass),
       },
       {
         path: 'user',
-        component: UserMaster,
+        loadComponent: () => import('./components/user-master/user-master').then(component => component.UserMaster),
       },
       {
         path: 'user-reactive',
-        component: UserReactiveForm,
+        loadComponent: () =>
+          import('./components/user-reactive-form/user-reactive-form').then(component => component.UserReactiveForm),
       },
       {
         path: 'api-get',
-        component: GetApi,
+        loadComponent: () => import('./components/API/get-api/get-api').then(component => component.GetApi),
       },
       {
         path: 'projectcompetition-crud-reactiveform',
-        component: ProjectCompetitionCRUDReactiveForm,
+        loadComponent: () =>
+          import('./components/project-competition-crud-reactive-form/project-competition-crud-reactive-form').then(
+            component => component.ProjectCompetitionCRUDReactiveForm,
+          ),
       },
       {
         path: 'projectcompetition-crud-reactiveform-signal',
-        component: ProjectCompetitionCRUDReactiveFormSignal,
+        loadComponent: () =>
+          import('./components/project-competition-crud-reactive-form-signal/project-competition-crud-reactive-form-signal').then(
+            component => component.ProjectCompetitionCRUDReactiveFormSignal,
+          ),
       },
       {
         path: 'signal-form-ex',
-        component: SignalFormEx,
+        loadComponent: () => import('./components/signal-form-ex/signal-form-ex').then(component => component.SignalFormEx),
       },
       {
         path: 'life-cycle-ex',
-        component: LifeCycleEx,
+        loadComponent: () => import('./components/life-cycle-ex/life-cycle-ex').then(component => component.LifeCycleEx),
       },
       {
         path: 'pipes-ex',
-        component: PipesEx,
+        loadComponent: () => import('./components/pipes-ex/pipes-ex').then(component => component.PipesEx),
       },
     ],
   },
   {
     path: '**',
-    component: NotFound,
+    loadComponent: () => import('./components/not-found/not-found').then(component => component.NotFound),
   },
 ];
